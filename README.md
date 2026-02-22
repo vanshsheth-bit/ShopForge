@@ -1,149 +1,175 @@
-🎉 Both pages are working perfectly!
+# ShopForge — AI Storefront Builder
 
-✅ Landing Page — Coffee brand with hero, features, pricing, testimonials
-✅ Product Page — Headphones with image, price, variants, add to cart, reviews
-✅ App.jsx shows real React component code
-✅ styles.css shows all the CSS
-✅ Both page types generate correctly
+Describe your shop in plain English, pick a page type, and get a production-ready storefront in seconds.
 
-Your app is fully functional and meets all core requirements! Now let's write the README for submission. Here's your prompt:
+![ShopForge Preview](https://loremflickr.com/1200/600/dashboard,software)
 
-Create a file called README.md at the project root. Replace any existing content with this:
-markdown# ShopForge — AI Shop Website Generator
+---
 
-> Describe your shop, pick a page type, get a production-ready website instantly.
+## What is this?
 
-![ShopForge](https://img.shields.io/badge/Built%20with-Next.js%2014-black?style=flat-square)
-![Tailwind](https://img.shields.io/badge/Styled%20with-Tailwind%20CSS-38bdf8?style=flat-square)
-![AI](https://img.shields.io/badge/AI-Multi--Provider-violet?style=flat-square)
+ShopForge is an AI-powered tool that lets you generate complete e-commerce pages just by describing what you want. You type something like *"a premium coffee subscription brand called Morning Ritual, dark moody aesthetic with gold accents"* and it spits out a full landing page with hero, features, pricing, testimonials — everything.
 
-## What I Built
+Built this as part of an intern assignment. The goal was to build a working AI → preview → export flow that feels like a real product, not a demo.
 
-ShopForge is an AI-powered web application where users describe their shop in plain English, select a page type (Landing Page or Product Page), and the AI generates a complete, styled React component with live preview — instantly.
-
-The generated code is a proper React component (`function App()`) with separate CSS, rendered live in a sandboxed iframe using Babel in the browser. Users can also export the page as a Next.js project structure.
-
-## Live Demo
-
-[Add your Vercel URL here]
-
-## Screen Recording
-
-[Add your Loom/recording URL here]
+---
 
 ## Features
 
-- **AI Chat Interface** — Describe your shop, refine with follow-up prompts
-- **Page Type Selector** — Landing Page or Product Page with different section structures
-- **Live Preview** — React component rendered instantly in sandboxed iframe
-- **Device Preview** — Toggle between Desktop, Tablet, Mobile viewports
-- **Code Export** — View App.jsx, styles.css, preview.html separately
-- **Next.js Export** — Download full Next.js project structure
-- **Reference URL** — Add inspiration URL as AI context
-- **Save to Dashboard** — All generated pages saved to localStorage
-- **Multi-Provider AI** — Supports Anthropic Claude, OpenAI GPT-4o, Google Gemini, Groq Llama
+**Core**
+- Generate landing pages or product pages from a text description
+- Live preview in an iframe sandbox (React + Tailwind, rendered in the browser)
+- Iterative refinements — just say "make the hero bigger" or "switch to dark mode"
+- 4 style presets: Minimalist, Bold, Luxury, Playful — each generates visually distinct output
+- Device preview toggle (Desktop / Tablet / Mobile)
+
+**Export**
+- Download as a self-contained HTML file
+- Download as a full Next.js project ZIP (ready to `npm install && npm run dev`)
+- Code viewer with syntax highlighting
+
+**Extra stuff**
+- Save pages to a dashboard (localStorage)
+- Version history — every refinement is saved, you can restore old versions
+- Generate 3 design variants at once and pick your favourite
+- Component library sidebar — drag sections like FAQ, Stats, Team onto the preview
+- One-click Vercel deploy (needs your own VERCEL_DEPLOY_TOKEN)
+- Share pages via a share link
+
+---
 
 ## Tech Stack
 
-| Layer | Technology |
-|-------|-----------|
-| Framework | Next.js 14 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS |
-| AI Providers | Claude / GPT-4o / Gemini / Groq |
-| Preview | Sandboxed iframe + Babel standalone |
-| Storage | localStorage |
-| Icons | Lucide React |
-| Code Display | React Syntax Highlighter |
+- **Next.js 14** (App Router)
+- **TypeScript**
+- **Tailwind CSS**
+- **Claude API** (claude-sonnet) — primary AI provider
+- Also supports OpenAI, Gemini, Groq via env flag
+- `react-syntax-highlighter` for code display
+- `jszip` for ZIP export
 
-## How to Run Locally
+---
 
-### 1. Clone the repo
+## Getting Started
+
 ```bash
-git clone https://github.com/YOUR_USERNAME/shopforge.git
+git clone https://github.com/yourusername/shopforge
 cd shopforge
-```
-
-### 2. Install dependencies
-```bash
 npm install
 ```
 
-### 3. Set up environment variables
-Create a `.env.local` file at the root:
-```env
-# Choose one provider and set AI_PROVIDER accordingly
-ANTHROPIC_API_KEY=your_key_here
-OPENAI_API_KEY=your_key_here
-GEMINI_API_KEY=your_key_here      # Free at aistudio.google.com
-GROQ_API_KEY=your_key_here        # Free at console.groq.com
+Create a `.env.local` file:
 
-# Set which provider to use
-AI_PROVIDER=groq
+```env
+# Required — pick one
+ANTHROPIC_API_KEY=your_key_here
+
+# Optional — switch AI provider
+AI_PROVIDER=anthropic   # or openai, gemini, groq
+
+# Optional — only needed for Vercel deploy feature
+VERCEL_DEPLOY_TOKEN=your_vercel_token
 ```
 
-### 4. Run the dev server
+Then:
+
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000)
+Open [http://localhost:3000](http://localhost:3000).
 
-## How to Get a Free API Key
+---
 
-The easiest free options:
-- **Groq** (fastest): https://console.groq.com — free, no credit card
-- **Gemini**: https://aistudio.google.com/app/apikey — free tier
+## How to use it
+
+1. Pick **Landing Page** or **Product Page** from the toggle
+2. Choose a style preset (Bold is the default, looks good for most things)
+3. Optionally paste a reference URL for design inspiration
+4. Describe your shop and hit Generate
+5. Once it loads, you can keep refining it by typing follow-up messages
+6. Hit **Save** to store it in your dashboard, or **Download** to export the code
+
+For the component library — click the **Components** button in the toolbar, then drag any section card onto the preview. The AI will blend it into your existing design.
+
+---
 
 ## Project Structure
+
 ```
 src/
 ├── app/
-│   ├── page.tsx              # Main generator UI
-│   ├── layout.tsx            # Root layout
-│   ├── globals.css           # Global styles
-│   ├── dashboard/page.tsx    # Saved pages dashboard
-│   └── api/generate/route.ts # AI API route (server-side)
-├── components/
-│   ├── Header.tsx            # Top navigation
-│   ├── ChatPanel.tsx         # Chat input + message history
-│   ├── PreviewPanel.tsx      # Live iframe preview
-│   ├── CodePanel.tsx         # Code viewer + export
-│   ├── PageTypeSelector.tsx  # Landing/Product toggle
-│   └── DeviceToggle.tsx      # Desktop/Tablet/Mobile toggle
+│   ├── page.tsx              # Main builder UI
+│   ├── dashboard/page.tsx    # Saved pages
+│   ├── share/[id]/page.tsx   # Shareable page viewer
+│   └── api/
+│       ├── generate/         # Main generation endpoint
+│       ├── variants/         # 3-variant generation
+│       ├── insert-section/   # Component library drag-drop
+│       └── deploy/           # Vercel deployment
+├── components/               # UI components
 ├── lib/
-│   ├── claude.ts             # AI client initializers
-│   ├── prompts.ts            # System prompts + message builder
-│   └── storage.ts            # localStorage helpers
-└── types/
-    └── index.ts              # TypeScript interfaces
+│   ├── pageBuilder.ts        # JSON pageData → React JSX
+│   ├── prompts.ts            # System prompts + message formatting
+│   ├── storage.ts            # localStorage helpers
+│   └── claude.ts             # AI provider clients
+├── shells/                   # Shell components (used in ZIP export)
+└── types/index.ts            # All TypeScript interfaces
 ```
+
+---
 
 ## Design Decisions
 
-**Single-file React output over raw HTML** — The AI generates a proper `function App()` React component with separate CSS. This is compiled in the browser using Babel standalone, giving a true live preview without a build step while still producing exportable React code.
+**Why JSON as the intermediate format?**
+The AI generates structured JSON (`GeneratedPageData`) instead of raw React code. This makes refinements, section merges, and preset switching way more reliable. Raw code generation is unpredictable — JSON is structured and diffable.
 
-**Multi-provider AI support** — Supporting Anthropic, OpenAI, Gemini, and Groq makes the app accessible to everyone regardless of which API credits they have. Switch providers by changing one env variable.
+**Why inline JSX in pageBuilder instead of importing shell components?**
+The live preview runs in a sandboxed iframe using Babel standalone. It can't import modules. So `pageBuilder.ts` builds a self-contained `function App()` with all the JSX inlined. The shell components in `src/shells/` are used for the ZIP export's `App.jsx`.
 
-**Server-side API calls** — All AI API calls go through Next.js API routes, keeping API keys secure and never exposed to the browser.
+**Why not use Sandpack?**
+Tried it. Too heavy and had issues with the Tailwind CDN inside it. The current iframe approach with `srcDoc` + Babel standalone works well and is much simpler.
 
-**localStorage for persistence** — No database needed. Pages are saved locally and accessible in the dashboard instantly.
+**Multi-provider support**
+Set `AI_PROVIDER=groq` in your env to use Llama 3.3 70B which is free and fast. Quality isn't as good as Claude for complex layouts but works fine for simple pages.
 
-## Hardest Technical Challenge
+---
 
-Getting the AI to consistently output a proper `function App()` React component (not raw JSX, not HTML) in valid JSON format. The solution was a strict system prompt with exact format examples, plus a fallback parser that wraps raw JSX in a function if the AI forgets.
+## Known Limitations
 
-## What I'd Improve With More Time
+- Share links only work in the same browser (data is in localStorage, not a server)
+- localStorage will fill up after ~20-30 saved pages (eviction happens automatically but older pages get dropped)
+- The Vercel deploy feature needs a token with deployment permissions — get one at vercel.com/account/tokens
+- Image generation uses loremflickr.com which is free but occasionally slow
 
-- Sandpack integration for true in-browser Next.js compilation
-- Multiple design variants generated simultaneously
-- Version history per page
-- One-click Vercel deploy from the UI
-- Better error recovery when AI output is malformed
+---
 
-## How I Used AI in My Workflow
+## What I'd improve with more time
 
-- Used Claude to architect the full system design before writing code
-- Used Windsurf (AI coding assistant) for implementation
-- Iterated on the AI system prompt by testing dozens of generations
-- Used AI to debug TypeScript errors and CSS compatibility issues
+- Real backend/database for saves and sharing (Supabase would be the obvious choice)
+- Streaming the AI generation so you see the page build progressively
+- Better mobile layout for the builder itself (the sidebar + preview layout doesn't work great on small screens)
+- Actually scrape/screenshot reference URLs instead of just passing them as text
+- More section types in the component library
+
+---
+
+## How I used AI in my workflow
+
+Used Claude heavily throughout — mostly for debugging and for writing the system prompts that get sent back to Claude. There's something funny about using Claude to write prompts for Claude.
+
+The hardest part was getting the JSON merge logic right for the component library. When you drag a FAQ section onto a page, the AI returns updated JSON but sometimes with empty arrays. Spent a while on the validation and merge guards to make sure dragging a section never breaks the existing page.
+
+---
+
+## Screenshots
+
+| Builder | Dashboard | Variants |
+|---------|-----------|----------|
+| Main generation flow | Saved pages grid | Pick from 3 styles |
+
+---
+
+## License
+
+MIT
