@@ -2,8 +2,6 @@
 
 Describe your shop in plain English, pick a page type, and get a production-ready storefront in seconds.
 
-![ShopForge Preview](https://loremflickr.com/1200/600/dashboard,software)
-
 ---
 
 ## What is this?
@@ -154,22 +152,11 @@ Set `AI_PROVIDER=groq` in your env to use Llama 3.3 70B which is free and fast. 
 
 ---
 
-## How I used AI in my workflow
-
-Used Claude heavily throughout — mostly for debugging and for writing the system prompts that get sent back to Claude. There's something funny about using Claude to write prompts for Claude.
-
-The hardest part was getting the JSON merge logic right for the component library. When you drag a FAQ section onto a page, the AI returns updated JSON but sometimes with empty arrays. Spent a while on the validation and merge guards to make sure dragging a section never breaks the existing page.
-
----
 
 ## Screenshots
 
 | Builder | Dashboard | Variants |
 |---------|-----------|----------|
-| Main generation flow | Saved pages grid | Pick from 3 styles |
+| ![Builder](public/screenshots/main-generation.png) | ![Dashboard](public/screenshots/dashboard.png) | ![Variants](public/screenshots/main.png) |
 
 ---
-
-## License
-
-MIT
